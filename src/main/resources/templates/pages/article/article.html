@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master-layout}">
+<head>
+
+  <title>ArticlePage</title>
+
+</head>
+<body>
+  <main layout:fragment="main-content">
+    <!--     card ~ start -->
+    <div class="album py-5 bg-body-tertiary">
+      <div class="container">
+        <a href="/article/new" type="button" class="btn btn-primary mb-3">New Article</a>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div th:each="article : ${articles}" th:object="${article}" class="col">
+            <div th:replace="~{fragments/card :: card_action(*{uuid},*{title},*{thumbnail},*{author})}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--     card ~ start -->
+
+  </main>
+</body>
+</html>

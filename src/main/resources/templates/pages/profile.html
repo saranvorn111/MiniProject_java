@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master-layout}">
+<head>
+
+    <title>Title</title>
+
+</head>
+<body>
+<main layout:fragment="main-content">
+    <div>
+        <div >
+            <div th:each="article: ${articles}" th:object="${article}">
+                <div th:replace="~{fragments/card::card-profile(*{uuid},*{title},*{thumbnail},*{author})}"></div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

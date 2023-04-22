@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master-layout}">
+<head>
+    <title>Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <main layout:fragment="main-content">
+        <!-- content ~start -->
+        <div>
+            <section class="py-5 text-center container">
+                <div class="row py-lg-5">
+                    <div class="col-lg-6 col-md-8 mx-auto">
+                        <h1 class="fw-light">welcome to my pages</h1>
+                        <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+                        <p>
+                            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- content ~end -->
+        <!-- card ~start-->
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-3 ">
+                    <div class="col-6 mb-2">
+                        <div class="col" th:each="article: ${articles}" th:object="${article}">
+                            <div th:replace="~{fragments/card::card-readonly(*{uuid},*{title},*{thumbnail},*{author})}"></div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class=" justify-content-center float-end">
+                            <div class="card" style="width: 500px;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/640px-No-Image-Placeholder.svg.png"
+                                     alt="News Coffee" class="bd-placeholder-img card-img-top">
+                                <div class="card-body">
+                                    <h4>ResArticle</h4>
+                                    <p class="card-text">Free Posting and sharing any article with insane freedom</p>
+                                    <hr>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="list-group">
+                                <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                                    Top categories
+                                </button>
+                                <button type="button" class="list-group-item list-group-item-action">A second button item</button>
+                                <button type="button" class="list-group-item list-group-item-action">A third button item</button>
+                                <button type="button" class="list-group-item list-group-item-action">A fourth button item</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- card ~end-->
+        <a href="/post" class="position-fixed text-decoration-none bottom-0  text-white fw-bolder end-0 btn btn-primary rounded-pill d-flex align-items-center justify-content-center"
+           style="width: 60px; height: 60px; right: 25px!important; bottom:25px!important" >
+            <i class="fa-solid fa-plus"></i>
+        </a>
+    </main>
+
+</body>
+</html>

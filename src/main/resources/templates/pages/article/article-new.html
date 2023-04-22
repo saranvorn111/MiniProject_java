@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/master-layout}">
+<head>
+
+    <title>Title</title>
+
+</head>
+<body>
+<main layout:fragment="main-content">
+    <div class="container">
+        <h1>Crate new Article</h1>
+        <form th:action="@{/article/new}" method="post" th:object="${article}" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="thumbnailFile" class="form-label">Thumbnail</label>
+                        <input class="form-control" type="file" id="thumbnailFile" name="thumbnailFile">
+                        <img class="w-75 mt-2" id="placeholder" th:src="@{/resources/img/default_pic/placeholder.jpg}" alt="your image" />
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input th:field="*{title}" type="text" class="form-control" id="title"  aria-describedby="emailHelp">
+                        <div class="form-text text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author</label>
+                        <input th:field="*{author}" type="text" class="form-control" id="author">
+                        <div class="form-text text-danger" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-5">Save</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</main>
+<th:block layout:fragment="subScript">
+    <script>
+        $(function(){
+            const thumbnailFile = $('#thumbnailFile')
+            const placeholder = $('#placeholder')
+            thumbnailFile.onchange=(evt)=>{
+                const[file]=thumbnailFile.files
+                if(file){
+                    placeholder.src=URL.createObjectURL(file)
+                }
+            }
+        })
+    </script>
+</th:block>
+<!--Individual webpage script  -->
+</body>
+</html>
